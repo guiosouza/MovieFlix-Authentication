@@ -1,6 +1,8 @@
 .login-container {
     display: flex;
     justify-content: center;
+    background-color: #525252;
+    padding: 17px 12px 17px 12px;
 }
 
 .login-card {
@@ -10,8 +12,7 @@
     justify-content: center;
     width: 298px;
     height: 464px;
-    margin-top: 17px;
-    border: 1px solid red;
+    background-color: #6C6C6C;;
 }
 
 .login-card h1 {
@@ -25,6 +26,10 @@
 
 .input-login-container-email input {
     border-radius: 4px;
+    color: #FEFEFE;
+    Width: 264.14px;
+    Height: 47px;
+    
 }
 
 .input-login-container-password {
@@ -32,5 +37,19 @@
 }
 
 .input-login-container-password input {
+    border-radius: 4px;
+    color: #FEFEFE;
+    Width: 264.14px;
+    Height: 47px;
+}
+
+.login-submit {
+    display: flex;
+    justify-content: center;
+}
+
+.login-submit button {
+    Width: 264.14px;
+    Height: 50px;
     border-radius: 4px;
 }

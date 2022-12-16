@@ -1,0 +1,11 @@
+.navbar-container {
+    height: 68px;
+    display: flex;
+    align-items: center;
+    background-color: #FFC700;
+}
+
+.navbar-container h2 {
+    margin-left: 18px;
+    font-weight: 700;
+}
