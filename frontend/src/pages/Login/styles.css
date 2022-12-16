@@ -1,0 +1,36 @@
+.login-container {
+    display: flex;
+    justify-content: center;
+}
+
+.login-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 298px;
+    height: 464px;
+    margin-top: 17px;
+    border: 1px solid red;
+}
+
+.login-card h1 {
+    line-height: 49px;
+}
+
+.input-login-container-email {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.input-login-container-email input {
+    border-radius: 4px;
+}
+
+.input-login-container-password {
+    margin-bottom: 54px;
+}
+
+.input-login-container-password input {
+    border-radius: 4px;
+}
