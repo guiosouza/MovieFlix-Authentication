@@ -5,6 +5,10 @@
     padding: 17px 12px 17px 12px;
 }
 
+.banner-container {
+    display: none;
+}
+
 .login-card {
     display: flex;
     flex-direction: column;
@@ -12,24 +16,32 @@
     justify-content: center;
     width: 298px;
     height: 464px;
-    background-color: #6C6C6C;;
+    background-color: #6C6C6C;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
 }
 
+
 .login-card h1 {
-    line-height: 49px;
+    font-weight: 400;
 }
 
 .input-login-container-email {
-    margin-top: 20px;
+    margin-top: 35px;
     margin-bottom: 20px;
 }
 
 .input-login-container-email input {
     border-radius: 4px;
-    color: #FEFEFE;
-    Width: 264.14px;
+    border: 1px solid #FEFEFE;
+    Width: 250.14px;
     Height: 47px;
+    padding-left: 14px;
     
+}
+
+.input-login-container-email input::placeholder {
+    color: #9E9E9E;
+    font-size: 16px;
 }
 
 .input-login-container-password {
@@ -38,9 +50,15 @@
 
 .input-login-container-password input {
     border-radius: 4px;
-    color: #FEFEFE;
-    Width: 264.14px;
+    border: 1px solid #FEFEFE;
+    Width: 250.14px;
     Height: 47px;
+    padding-left: 14px;
+}
+
+.input-login-container-password input::placeholder {
+    color: #9E9E9E;
+    font-size: 16px;
 }
 
 .login-submit {
@@ -52,4 +70,112 @@
     Width: 264.14px;
     Height: 50px;
     border-radius: 4px;
+    background: #FFC700;
+    outline: none;
+    border: none;
+    margin-bottom: 35px;
+}
+
+@media(min-width: 576px) {
+
+    .login-container {
+        display: flex;
+        justify-content: center;
+        background-color: #525252;
+        padding: 40px 48px 182px 48px;
+    }
+
+    .login-card {
+        width: 479px;
+        height: 573px;
+        box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    .login-card h1 {
+        font-size: 48px;
+        line-height: 65px;
+        font-weight: 400
+    }
+
+    .input-login-container-email {
+        margin-top: 35px;
+        margin-bottom: 30px;
+    }
+
+    .input-login-container-email input {
+        Width: 384px;
+        Height: 47px;
+    }
+
+    .input-login-container-password {
+        margin-bottom: 74px;
+    }
+
+    .input-login-container-password input {
+        Width: 384px;
+        Height: 47px;
+    }
+
+    .login-submit button {
+        Width: 384px;
+        Height: 65.63px;
+    }
+
+}
+
+@media(min-width: 768px) {
+
+    .login-container {
+        display: flex;
+        justify-content: center;
+        background-color: #525252;
+        padding: 40px 144px 304px 144px;
+    }
+    
+    .login-card {
+        width: 479px;
+        height: 573px;
+    }
+}
+
+@media(min-width: 1200px) {
+
+    .login-container {
+        display: flex;
+        justify-content: space-between;
+        background-color: #525252;
+        padding: 40px 100px 304px 70px;
+    }
+
+    .banner-container {
+        padding: 45px 10px 10px 3px;
+        width: 397px;
+        height: 460px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .banner-container h1 {
+        color: #fff;
+        font-size: 48px;
+        font-weight: 700;
+        margin-bottom: 15px;
+        margin-left: 29px;
+    }
+
+    .banner-container h2 {
+        color: #fff;
+        font-size: 22px;
+        font-weight: 400;
+        margin-bottom: 45px;
+        margin-left: 29px;
+        width: 320px;
+    }
+
+    .banner-container img {
+        width: 381.89px;
+        height: 264.94px;
+    }
+
+
 }

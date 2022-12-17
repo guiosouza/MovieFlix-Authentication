@@ -9,3 +9,24 @@
     margin-left: 18px;
     font-weight: 700;
 }
+
+@media(min-width: 576px) {
+
+    .navbar-container h2 {
+        margin-left: 23px;
+    }
+}
+
+@media(min-width: 576px) {
+
+    .navbar-container h2 {
+        margin-left: 23px;
+    }
+}
+
+@media(min-width: 768px) {
+
+    .navbar-container h2 {
+        margin-left: 31px;
+    }
+}
