@@ -1,8 +1,23 @@
-import { Link } from "react-router-dom";
 import { ReactComponent as BannerImage } from "assets/images/banner.svg";
+import { useForm } from "react-hook-form";
 import "./styles.css";
 
+// Um tipo que representa os dados do formulário:
+type FormData = {
+  username: string;
+  password: string;
+}
+
 const Login = () => {
+
+  // useForm parametrizado com FormData
+  const { register, handleSubmit } = useForm<FormData>();
+  // recebe um argumento formData do tipo FormData
+  const onSubmit = (formData : FormData) => {
+    // Ver se o react hook form está pegando os dados do formulário
+    console.log(formData); 
+  };
+
   return (
     <div className="login-container">
       <div className="banner-container">
@@ -12,18 +27,26 @@ const Login = () => {
       </div>
       <div className="login-card">
         <h1>LOGIN</h1>
-        <form>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className="input-login-container-email">
-            <input type="text" placeholder="Email" />
+            <input
+              {...register("username")}
+              type="text" 
+              placeholder="Email" 
+              name="username"
+            />
           </div>
           <div className="input-login-container-password">
-            <input type="text" placeholder="Senha" />
+            <input
+             {...register("password")}
+              type="text" 
+              placeholder="Senha" 
+              name="password"
+            />
           </div>
           <div className="login-submit">
             <button>
-              <Link to="/">
                 <h2>FAZER LOGIN</h2>
-              </Link>
             </button>
           </div>
         </form>
