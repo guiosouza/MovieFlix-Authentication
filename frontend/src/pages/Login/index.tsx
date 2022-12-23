@@ -1,5 +1,6 @@
 import { ReactComponent as BannerImage } from "assets/images/banner.svg";
 import { useForm } from "react-hook-form";
+import { requestBackendLogin } from "util/requests";
 import "./styles.css";
 
 // Um tipo que representa os dados do formulário:
@@ -14,8 +15,14 @@ const Login = () => {
   const { register, handleSubmit } = useForm<FormData>();
   // recebe um argumento formData do tipo FormData
   const onSubmit = (formData : FormData) => {
-    // Ver se o react hook form está pegando os dados do formulário
-    console.log(formData); 
+    
+    requestBackendLogin(formData)
+    .then(response => {
+      console.log("SUCESSO!", response)
+    })
+    .catch(error => {
+      console.log("Erro: ", error)
+    });
   };
 
   return (
@@ -39,7 +46,7 @@ const Login = () => {
           <div className="input-login-container-password">
             <input
              {...register("password")}
-              type="text" 
+              type="password" 
               placeholder="Senha" 
               name="password"
             />
