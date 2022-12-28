@@ -1,7 +1,7 @@
 import { ReactComponent as BannerImage } from "assets/images/banner.svg";
 import { useForm } from "react-hook-form";
 import { requestBackendLogin } from "util/requests";
-import "assets/styles/custom.css"
+import "assets/styles/custom.css";
 import "./styles.css";
 import { useState } from "react";
 
@@ -9,25 +9,24 @@ import { useState } from "react";
 type FormData = {
   username: string;
   password: string;
-}
+};
 
 const Login = () => {
-
-  const [hasError, setHasError] = useState(false); 
+  const [hasError, setHasError] = useState(false);
 
   // useForm parametrizado com FormData
-  const { register, handleSubmit } = useForm<FormData>();
+  const { register, handleSubmit, formState: {errors} } = useForm<FormData>();
   // recebe um argumento formData do tipo FormData
-  const onSubmit = (formData : FormData) => {
+  const onSubmit = (formData: FormData) => {
     requestBackendLogin(formData)
-    .then(response => {
-      setHasError(false);
-      console.log("SUCESSO!", response)
-    })
-    .catch(error => {
-      setHasError(true);
-      console.log("Erro: ", error)
-    });
+      .then((response) => {
+        setHasError(false);
+        console.log("SUCESSO!", response);
+      })
+      .catch((error) => {
+        setHasError(true);
+        console.log("Erro: ", error);
+      });
   };
 
   return (
@@ -39,31 +38,39 @@ const Login = () => {
       </div>
       <div className="login-card">
         <h1>LOGIN</h1>
-        { hasError &&
-          <div className="danger">
-            Erro ao tentar efetuar o login
-          </div>
-        }
+        {hasError && (
+          <div className="danger">Erro ao tentar efetuar o login</div>
+        )}
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="input-login-container-email">
             <input
-              {...register("username")}
-              type="text" 
-              placeholder="Email" 
+              {...register("username", {
+                required: 'Campo obrigatório',
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                  message: 'Email inválido'
+                }
+              })}
+              type="text"
+              placeholder="Email"
               name="username"
             />
+            <div className="invalid-feedback">{errors.username?.message}</div>
           </div>
           <div className="input-login-container-password">
             <input
-             {...register("password")}
-              type="password" 
-              placeholder="Senha" 
+              {...register("password", {
+                required: 'Campo obrigatório'
+              })}
+              type="password"
+              placeholder="Senha"
               name="password"
             />
+            <div className="invalid-feedback">{errors.password?.message}</div>
           </div>
           <div className="login-submit">
             <button>
-                <h2>FAZER LOGIN</h2>
+              <h2>FAZER LOGIN</h2>
             </button>
           </div>
         </form>

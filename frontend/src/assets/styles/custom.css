@@ -3,3 +3,7 @@
   margin-top: 10px;
   font-size: 20px;
 }
+
+.invalid-feedback {
+  color: #faa1a1
+}
