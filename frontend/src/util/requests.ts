@@ -1,9 +1,22 @@
 import qs from "qs";
 import axios from "axios";
 
+// Estrutura da resposta do Login (ver no Postman ou Insomnia):
+type LoginResponse = {
+  access_token: string,
+  token_type: string,
+  refresh_token: string,
+  expires_in: number,
+  scope: string,
+  userName: string,
+  userId: number
+}
+
 export const BASE_URL =
   process.env.REACT_APP_BACKEND_URL ??
   "https://movieflix-devsuperior.herokuapp.com";
+
+const tokenKey = 'authData';
 
 const CLIENT_ID = process.env.REACT_APP_CLIENT_ID ?? "myclientid";
 const CLIENT_SECRET = process.env.REACT_APPCLIENT_SECRET ?? "myclientsecret";
@@ -37,3 +50,14 @@ export const requestBackendLogin = (loginData: LoginData) => {
     headers,
   });
 };
+
+// Função para permitir salvar o obj LoginResponse no localStorage:
+export const saveAuthData = (obj : LoginResponse) => {
+  localStorage.setItem('authData', JSON.stringify(obj));
+}
+
+export const getAuthData = () => {
+  const str = localStorage.getItem(tokenKey) ?? "{}";
+  const obj = JSON.parse(str);
+  return obj as LoginResponse;
+}
