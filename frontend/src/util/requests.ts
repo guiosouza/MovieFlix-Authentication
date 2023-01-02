@@ -1,5 +1,5 @@
 import qs from "qs";
-import axios from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 
 // Estrutura da resposta do Login (ver no Postman ou Insomnia):
 type LoginResponse = {
@@ -50,6 +50,10 @@ export const requestBackendLogin = (loginData: LoginData) => {
     headers,
   });
 };
+
+export const requestBackend = (config: AxiosRequestConfig) => {
+  return axios(config);
+}
 
 // Função para permitir salvar o obj LoginResponse no localStorage:
 export const saveAuthData = (obj : LoginResponse) => {
