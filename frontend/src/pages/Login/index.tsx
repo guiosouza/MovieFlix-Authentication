@@ -1,9 +1,11 @@
 import { ReactComponent as BannerImage } from "assets/images/banner.svg";
 import { useForm } from "react-hook-form";
 import { getAuthData, requestBackendLogin, saveAuthData } from "util/requests";
+import { useState } from "react";
+import { useHistory } from "react-router-dom";
 import "assets/styles/custom.css";
 import "./styles.css";
-import { useState } from "react";
+
 
 // Um tipo que representa os dados do formulário:
 type FormData = {
@@ -13,6 +15,13 @@ type FormData = {
 
 const Login = () => {
   const [hasError, setHasError] = useState(false);
+
+  /* useHistory:
+    - Fez a requisição de login com "requestBackendLogin(formData)" e recebeu a response
+    - A função salvou o token no localStorage 
+    - history.push() criou uma rota numa pilha (se tentar voltar, vai desempilhando)
+  */
+  const history = useHistory();
 
   // useForm parametrizado com FormData
   const { register, handleSubmit, formState: {errors} } = useForm<FormData>();
@@ -25,6 +34,7 @@ const Login = () => {
         console.log("TOKEN GERADO: " + token);
         setHasError(false);
         console.log("SUCESSO!", response);
+        history.push('/movies');
       })
       .catch((error) => {
         setHasError(true);
