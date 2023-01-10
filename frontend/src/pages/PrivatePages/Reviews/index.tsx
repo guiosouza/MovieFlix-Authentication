@@ -1,16 +1,16 @@
 import { AxiosRequestConfig } from "axios";
 import { useEffect, useState } from "react";
-import { Movie } from "types/movie";
-import { SpringPage } from "types/vendor/axios";
+import { ReviewPage } from "types/ReviewPage";
+import { Review } from "types/reviews";
 import { requestBackend } from "util/requests";
 import "./styles.css";
 
-const MovieList = () => {
-  const [page, setPage] = useState<SpringPage<Movie>>();
+const Reviews = () => {
+  const [page, setPage] = useState<ReviewPage<Review>>();
 
   useEffect(() => {
     const params: AxiosRequestConfig = {
-      url: "/movies",
+      url: "/movies/1/reviews",
       withCredentials: true,
       params: {
         page: 0,
@@ -27,13 +27,13 @@ const MovieList = () => {
   return (
     <div className="page-container">
       <div className="movie-list-container">
-        <h1>Tela de listagem de filmes</h1>
-        {page?.content.map((item) => (
-          <h2 key={item.id}>Acessar movies/{item.id}</h2>
+        <h2>Tela de listagem de filmes</h2>
+        {page?.map((item) => (
+          <h2>Análise do filme {item.text}</h2>
         ))}
       </div>
     </div>
   );
 };
 
-export default MovieList;
+export default Reviews;

@@ -1,0 +1,1 @@
+export type ReviewPage<R> = R[];
