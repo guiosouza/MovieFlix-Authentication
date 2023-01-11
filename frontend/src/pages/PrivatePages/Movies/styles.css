@@ -1,0 +1,17 @@
+.movie-list-page {
+    background-color:  #525252;
+    padding: 15px 40px 344px 15px;
+}
+
+.list-container h1 {
+    font-size: 22px;
+    width: 286px;
+    margin-bottom: 47px;
+}
+
+.list-container h2 {
+    font-size: 18px;
+    color: #fff;
+    font-weight: 400;
+    margin-bottom: 12px;
+}

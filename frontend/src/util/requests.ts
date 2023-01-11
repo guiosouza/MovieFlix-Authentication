@@ -1,5 +1,7 @@
 import qs from "qs";
 import axios, { AxiosRequestConfig } from "axios";
+import history from "./history";
+import jwtDecode from 'jwt-decode';
 
 // Estrutura da resposta do Login (ver no Postman ou Insomnia):
 type LoginResponse = {
@@ -10,6 +12,14 @@ type LoginResponse = {
   scope: string;
   userName: string;
   userId: number;
+};
+
+type Role = "ROLE_MEMBER" | "ROLE_VISITOR";
+
+type TokenData = {
+  exp: number;
+  user_name: string;
+  authorities: Role[];
 };
 
 export const BASE_URL =
@@ -74,25 +84,57 @@ export const getAuthData = () => {
 };
 
 // Add a request interceptor
-axios.interceptors.request.use(function (config) {
-  // Do something before request is sent
-  console.log("Interceptor, antes da requisição")
-  return config;
-}, function (error) {
-  // Do something with request error
-  console.log("Erro na requisição")
-  return Promise.reject(error);
-});
+axios.interceptors.request.use(
+  function (config) {
+    // Do something before request is sent
+    console.log("Interceptor, antes da requisição");
+    return config;
+  },
+  function (error) {
+    // Do something with request error
+    console.log("Erro na requisição");
+    return Promise.reject(error);
+  }
+);
 
 // Add a response interceptor
-axios.interceptors.response.use(function (response) {
-  // Any status code that lie within the range of 2xx cause this function to trigger
-  // Do something with response data
-  console.log("Interceptor, resposta com sucesso")
-  return response;
-}, function (error) {
-  // Any status codes that falls outside the range of 2xx cause this function to trigger
-  // Do something with response error
-  console.log("Interceptor, resposta com erro")
-  return Promise.reject(error);
-});
+axios.interceptors.response.use(
+  function (response) {
+    // Any status code that lie within the range of 2xx cause this function to trigger
+    // Do something with response data
+    console.log("Interceptor, resposta com sucesso");
+    return response;
+  },
+  function (error) {
+    // Any status codes that falls outside the range of 2xx cause this function to trigger
+    // Do something with response error
+    if (error.response.status == 401 || error.response.status == 403) {
+      history.push("/");
+    }
+
+    console.log("Interceptor, resposta com erro");
+    return Promise.reject(error);
+  }
+);
+
+// Pegar e decodificar o token
+// Vamos usar uma biblioteca externa
+// Função que retorna ou o TokenData ou undefined
+export const getTokenData = () : TokenData | undefined => {
+
+  const loginResponse = getAuthData();
+
+  try {
+    return jwtDecode(loginResponse.access_token) as TokenData;
+  }
+  catch(error) {
+    return undefined;
+  }
+};
+
+export const isAuthenticated = () : boolean => { 
+  const tokenData = getTokenData();
+
+  return (tokenData && tokenData.exp * 1000 > Date.now()) ? true : false;
+
+}

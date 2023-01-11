@@ -18,5 +18,3 @@ export type SpringPage<T> = {
   numberOfElements?: number;
   empty: boolean;
 };
-
-export type ReviewPage<R> = R[];
