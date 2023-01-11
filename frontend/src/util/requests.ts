@@ -1,7 +1,7 @@
 import qs from "qs";
 import axios, { AxiosRequestConfig } from "axios";
 import history from "./history";
-import jwtDecode from 'jwt-decode';
+import jwtDecode from "jwt-decode";
 
 // Estrutura da resposta do Login (ver no Postman ou Insomnia):
 type LoginResponse = {
@@ -16,7 +16,7 @@ type LoginResponse = {
 
 type Role = "ROLE_MEMBER" | "ROLE_VISITOR";
 
-type TokenData = {
+export type TokenData = {
   exp: number;
   user_name: string;
   authorities: Role[];
@@ -83,6 +83,11 @@ export const getAuthData = () => {
   return obj as LoginResponse;
 };
 
+// função para remover do localStorage
+export const removeAuthData = () => {
+  localStorage.removeItem(tokenKey);
+};
+
 // Add a request interceptor
 axios.interceptors.request.use(
   function (config) {
@@ -120,21 +125,36 @@ axios.interceptors.response.use(
 // Pegar e decodificar o token
 // Vamos usar uma biblioteca externa
 // Função que retorna ou o TokenData ou undefined
-export const getTokenData = () : TokenData | undefined => {
-
+export const getTokenData = (): TokenData | undefined => {
   const loginResponse = getAuthData();
 
   try {
     return jwtDecode(loginResponse.access_token) as TokenData;
-  }
-  catch(error) {
+  } catch (error) {
     return undefined;
   }
 };
 
-export const isAuthenticated = () : boolean => { 
+export const isAuthenticated = (): boolean => {
   const tokenData = getTokenData();
 
-  return (tokenData && tokenData.exp * 1000 > Date.now()) ? true : false;
+  return tokenData && tokenData.exp * 1000 > Date.now() ? true : false;
+};
 
-}
+export const hasAnyRoles = (roles: Role[]): boolean => {
+  if (roles.length === 0) {
+    return true;
+  }
+
+  const tokenData = getTokenData();
+
+  if (tokenData !== undefined) {
+    for(var i = 0; i < roles.length; i++) {
+      if (tokenData.authorities.includes(roles[i])) {
+        return true;
+      }
+    }
+  }
+
+  return false;
+};

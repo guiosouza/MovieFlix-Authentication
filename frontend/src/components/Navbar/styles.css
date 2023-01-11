@@ -2,12 +2,27 @@
     height: 68px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     background-color: #FFC700;
 }
 
 .navbar-container h2 {
     margin-left: 18px;
     font-weight: 700;
+}
+
+.nav-logout {
+    margin-right: 10px; 
+}
+
+.nav-logout button  {
+    border: 1px solid #000000;
+    border-radius: 10px;
+    Width:100px;
+    Height: 30px;
+    background-color: #FFC700;
+    font-weight: 700;
+    font-size: 14px;
 }
 
 @media(min-width: 576px) {

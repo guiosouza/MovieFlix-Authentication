@@ -4,9 +4,11 @@
 }
 
 .list-container h1 {
-    font-size: 22px;
+    font-size: 21.5px;
     width: 286px;
+    
     margin-bottom: 47px;
+    letter-spacing: -0.015em;
 }
 
 .list-container h2 {

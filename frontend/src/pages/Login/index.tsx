@@ -1,9 +1,10 @@
 import { ReactComponent as BannerImage } from "assets/images/banner.svg";
 import { useForm } from "react-hook-form";
-import { getAuthData, requestBackendLogin, saveAuthData } from "util/requests";
-import { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { getAuthData, getTokenData, hasAnyRoles, requestBackendLogin, saveAuthData } from "util/requests";
+import { useContext, useState } from "react";
+import { useHistory, useLocation } from "react-router-dom";
 import "assets/styles/custom.css";
+import { AuthContext } from "AuthContext";
 import "./styles.css";
 
 
@@ -13,7 +14,18 @@ type FormData = {
   password: string;
 };
 
+type LocationState = {
+  from: string;
+}
+
 const Login = () => {
+
+  const location = useLocation<LocationState>();
+
+  const { from } = location.state || {from: {pathname: "/movies"}}
+
+  const { setAuthContextData } = useContext(AuthContext);
+
   const [hasError, setHasError] = useState(false);
 
   /* useHistory:
@@ -34,7 +46,11 @@ const Login = () => {
         console.log("TOKEN GERADO: " + token);
         setHasError(false);
         console.log("SUCESSO!", response);
-        history.push('/movies');
+        setAuthContextData({
+          authenticated: true,
+          tokenData: getTokenData()
+        })
+        history.replace(from);
       })
       .catch((error) => {
         setHasError(true);
