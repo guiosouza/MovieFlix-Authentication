@@ -4,14 +4,22 @@ import { ReviewPage } from "types/ReviewPage";
 import { Review } from "types/reviews";
 import { hasAnyRoles, requestBackend } from "util/requests";
 import CardStar from "assets/images/review-star.png";
+import { useParams } from "react-router-dom";
 import "./styles.css";
 
+type UrlParams = {
+  movieId: string;
+}
+
 const Reviews = () => {
+
   const [page, setPage] = useState<ReviewPage<Review>>();
+
+  const { movieId } = useParams<UrlParams>();
 
   useEffect(() => {
     const params: AxiosRequestConfig = {
-      url: "/movies/1/reviews",
+      url: `/movies/${movieId}/reviews`,
       withCredentials: true,
       params: {
         page: 0,
@@ -23,7 +31,7 @@ const Reviews = () => {
       setPage(response.data);
       console.log(response.data);
     });
-  }, []);
+  }, [movieId]);
 
   return (
     <div className="page-container">

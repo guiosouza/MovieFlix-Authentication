@@ -18,7 +18,7 @@ const Routes = () => {
           <Route path="/movies" exact>
             <Movies />
           </Route>
-          <Route  path="/movies/1/reviews" exact>
+          <Route  path="/movies/:movieId/reviews" exact>
             <Reviews />
           </Route>
         </PrivateRoute>
