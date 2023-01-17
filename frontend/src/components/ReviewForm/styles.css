@@ -1,0 +1,42 @@
+.review-submit-card {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+    width: auto;
+    height: auto;
+    background-color: #6C6C6C;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+    padding: 17px 10px 28px 10px;
+    margin-bottom: 18px;
+}
+
+.review-submit-card form {
+    display: flex;
+    flex-direction: column;
+}
+
+.review-submit-card input {
+    border: 1px solid #E1E1E1;
+    border-radius: 4px;
+    Width: auto;
+    Height: 50px;
+    margin-bottom: 17px;
+    padding-left: 10px
+}
+
+.review-submit-card button {
+   background: #FFC700;
+    border-radius: 4px;
+    Width:  auto;
+    Height: 50px;
+    font-weight: 700;
+    font-size: 16px;
+    border: none;
+}
+
+#input-review::placeholder {
+    color:#9E9E9E;
+    font-size: 16px;
+} 

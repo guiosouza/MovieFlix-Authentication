@@ -1,100 +1,21 @@
 .page-container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     background-color: #525252;
     padding: 17px 12px 17px 12px;
-
 }
 
-.movie-list-container h1 {
+.page-container h1 {
     margin-bottom: 18px;
     font-size: 24px;
 }
 
-.movie-list-container h2 {
+.page-container h2 {
     margin-bottom: 27px;
     color: #fff;
     font-weight: 400;
     font-size: 16px;
 }
 
-.review-card {
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-    justify-content: center;
-    width: auto;
-    height: auto;
-    background-color: #6C6C6C;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
-    border-radius: 4px;
-    padding: 17px 10px 28px 10px;
-}
-
-.review-details h2 {
-    margin-top: 15px;
-    margin-bottom: 8px;
-    font-weight: 700;
-}
-
-.review-details-box {
-    border: solid 1px #E1E1E1;
-    border-radius: 4px;
-    padding: 10px 28px 21px 12px;
-    
-}
-
-.review-details-box h2 {
-    margin: 0px;
-    color: #9E9E9E;
-    font-weight: 400;
-}
-
-.reviewer-name {
-    display: flex;
-}
-
-.reviewer-name img {
-    margin-top: 19px;
-    margin-left: 7px;
-    margin-right: 15px;
-}
-
-.review-submit-card {
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-    justify-content: center;
-    width: auto;
-    height: auto;
-    background-color: #6C6C6C;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
-    border-radius: 4px;
-    padding: 17px 10px 28px 10px;
-    margin-bottom: 18px;
-}
-
-.review-submit-card input {
-    border: 1px solid #E1E1E1;
-    border-radius: 4px;
-    Width: auto;
-    Height: 50px;
-    margin-bottom: 17px;
-    padding-left: 10px
-}
-
-.review-submit-card button {
-   background: #FFC700;
-    border-radius: 4px;
-    Width:  280px;
-    Height: 50px;
-    font-weight: 700;
-    font-size: 16px;
-    border: none;
-}
-
-#input-review::placeholder {
-    color:#9E9E9E;
-    font-size: 16px;
-} 
 

@@ -38,6 +38,11 @@ type LoginData = {
   password: string;
 };
 
+type PostData = {
+  text: string;
+  movieId: number;
+};
+
 // Função para fazer requisição de Login
 export const requestBackendLogin = (loginData: LoginData) => {
   // headers vem do AxiosRequestConfig
@@ -56,6 +61,26 @@ export const requestBackendLogin = (loginData: LoginData) => {
     method: "POST",
     baseURL: BASE_URL,
     url: "/oauth/token",
+    data,
+    headers,
+  });
+};
+
+export const requestBackendPost = (postData: PostData) => {
+  const headers = {
+    "Content-Type": "application/x-www-form-urlencoded",
+    Authorization: "Basic " + window.btoa(CLIENT_ID + ":" + CLIENT_SECRET),
+  };
+
+  // Será o corpo da requisição
+  const data = qs.stringify({
+    ...postData,
+  });
+
+  return axios({
+    method: "POST",
+    baseURL: BASE_URL,
+    url: "/reviews",
     data,
     headers,
   });
@@ -149,7 +174,7 @@ export const hasAnyRoles = (roles: Role[]): boolean => {
   const tokenData = getTokenData();
 
   if (tokenData !== undefined) {
-    for(var i = 0; i < roles.length; i++) {
+    for (var i = 0; i < roles.length; i++) {
       if (tokenData.authorities.includes(roles[i])) {
         return true;
       }
