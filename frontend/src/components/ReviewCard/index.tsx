@@ -1,11 +1,10 @@
-import axios, { AxiosRequestConfig } from "axios";
+import { AxiosRequestConfig } from "axios";
 import { useEffect, useState } from "react";
 import { ReviewPage } from "types/ReviewPage";
 import { Review } from "types/reviews";
-import { hasAnyRoles, requestBackend } from "util/requests";
+import { requestBackend } from "util/requests";
 import CardStar from "assets/images/review-star.png";
 import { useParams } from "react-router-dom";
-import { useForm } from "react-hook-form";
 import "./styles.css";
 
 type UrlParams = {
@@ -15,8 +14,6 @@ type UrlParams = {
 const ReviewCard = () => {
 
   const [page, setPage] = useState<ReviewPage<Review>>();
-
-  const { register, handleSubmit, formState: {errors} } = useForm<FormData>();
 
   const { movieId } = useParams<UrlParams>();
 
@@ -35,9 +32,6 @@ const ReviewCard = () => {
       console.log(response.data);
     });
   }, [movieId]);
-
-  const onSubmit = (formData: FormData) => {
-  };
 
   return (
       <div className="movie-list-container">

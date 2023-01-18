@@ -14,7 +14,7 @@ type UrlParams = {
 
 const Reviews = () => {
 
-  const [page, setPage] = useState<ReviewPage<Review>>();
+  const [page, setPage] = useState<ReviewPage<Review>>([]);
 
   const { movieId } = useParams<UrlParams>();
 
@@ -34,11 +34,17 @@ const Reviews = () => {
     });
   }, [movieId]);
 
+  const handleInsertReview = (review : Review) => {
+    const clone = [...page]
+    clone.push(review);
+    setPage(clone);
+  }
+
   return (
     <div className="page-container">
         <h1>Tela de listagem de filmes id: {movieId}</h1>
         {hasAnyRoles(["ROLE_MEMBER"]) && (
-            <ReviewForm  movieId={movieId} />
+            <ReviewForm  movieId={movieId} onInsertReview={handleInsertReview}/>
         )}
             <ReviewCard/>
     </div>
