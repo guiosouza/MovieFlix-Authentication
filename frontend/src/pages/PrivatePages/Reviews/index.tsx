@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig } from "axios";
+import { AxiosRequestConfig } from "axios";
 import { useEffect, useState } from "react";
 import { ReviewPage } from "types/ReviewPage";
 import { Review } from "types/reviews";
@@ -10,12 +10,10 @@ import ReviewCard from "components/ReviewCard";
 
 type UrlParams = {
   movieId: string;
-}
+};
 
 const Reviews = () => {
-
-  const [page, setPage] = useState<ReviewPage<Review>>([]);
-
+  const [page, setPage] = useState<Review[]>([]); //recebe a lista de reviews obtida na requisição.
   const { movieId } = useParams<UrlParams>();
 
   useEffect(() => {
@@ -34,19 +32,21 @@ const Reviews = () => {
     });
   }, [movieId]);
 
-  const handleInsertReview = (review : Review) => {
-    const clone = [...page]
+  const handleInsertReview = (review: Review) => {
+    const clone = [...page];
     clone.push(review);
     setPage(clone);
-  }
+  };
 
   return (
     <div className="page-container">
-        <h1>Tela de listagem de filmes id: {movieId}</h1>
-        {hasAnyRoles(["ROLE_MEMBER"]) && (
-            <ReviewForm  movieId={movieId} onInsertReview={handleInsertReview}/>
-        )}
-            <ReviewCard/>
+      <h1>Tela de listagem de filmes id: {movieId}</h1>
+      {hasAnyRoles(["ROLE_MEMBER"]) && (
+        <ReviewForm movieId={movieId} onInsertReview={handleInsertReview} />
+      )}
+      {page?.map((x) => (
+        <ReviewCard key={x.id} review={x} /> //uso a lista de reviews para renderizar card a card.
+      ))}
     </div>
   );
 };

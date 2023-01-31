@@ -1,6 +1,6 @@
 import { AxiosRequestConfig } from "axios";
 import { useForm } from "react-hook-form";
-import { Review } from "types/reviews"
+import { Review } from "types/reviews";
 import "./styles.css";
 import { requestBackend } from "util/requests";
 
@@ -8,52 +8,58 @@ type FormData = {
   text: string;
   movieId: number;
 };
-  
-  type Props = {
-    movieId: string
-    onInsertReview:  (review: Review) => void
-  }
 
-const ReviewForm = ({movieId, onInsertReview} : Props) => {
+type Props = {
+  movieId: string;
+  onInsertReview: (review: Review) => void;
+};
 
-  const { register, handleSubmit, formState: { errors }, setValue } = useForm<FormData>();
+const ReviewForm = ({ movieId, onInsertReview }: Props) => {
+  const {
+    register,
+    handleSubmit,
+    //formState: { errors },
+    setValue,
+  } = useForm<FormData>();
 
   const onSubmit = (formData: FormData) => {
-     // converte a string formData.movieId para number
-     // isso serve para poder ser enviado pela requisição de POST
-      formData.movieId = parseInt(movieId);
+    // converte a string formData.movieId para number
+    // isso serve para poder ser enviado pela requisição de POST
+    formData.movieId = parseInt(movieId);
 
-      const config : AxiosRequestConfig = {
-        method: 'POST',
-        url: '/reviews',
-        data: formData,
-        withCredentials: true,
-      };
+    const config: AxiosRequestConfig = {
+      method: "POST",
+      url: "/reviews",
+      data: formData,
+      withCredentials: true,
+    };
 
-      requestBackend(config)
-      .then(response => {
-        console.log('A requisição foi salva!', response);
-        setValue('text', '');
+    requestBackend(config)
+      .then((response) => {
+        //console.log("A requisição foi salva!", response);
+        setValue("text", "");
         onInsertReview(response.data);
       })
-      .catch(error => {
-        console.log('Erro ao salvar!', error);
+      .catch((error) => {
+        console.log("Erro ao salvar!", error);
       });
   };
 
   return (
     <div className="review-submit-card">
       <form onSubmit={handleSubmit(onSubmit)}>
-      <input
-           {...register("text", {
-             required: 'Campo obrigatório,'
-           })}
+        <input
+          {...register("text", {
+            required: "Campo obrigatório,",
+          })}
           id="input-review"
           type="text"
           placeholder="Deixe sua avaliação aqui"
           name="text"
         />
+        <div style={{display: "flex", justifyContent: "center"}}>
         <button>SALVAR AVALIAÇÃO</button>
+        </div>
       </form>
     </div>
   );

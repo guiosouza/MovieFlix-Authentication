@@ -1,21 +1,29 @@
 .page-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #525252;
+  padding: 17px 12px 17px 12px;
+}
+
+.page-container h1 {
+  margin-bottom: 18px;
+  font-size: 24px;
+}
+
+.page-container h2 {
+  margin-bottom: 27px;
+  color: #fff;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+@media (min-width: 1200px) {
+  .page-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     background-color: #525252;
-    padding: 17px 12px 17px 12px;
+    padding: 17px 40px 17px 40px;
+  }
 }
-
-.page-container h1 {
-    margin-bottom: 18px;
-    font-size: 24px;
-}
-
-.page-container h2 {
-    margin-bottom: 27px;
-    color: #fff;
-    font-weight: 400;
-    font-size: 16px;
-}
-
-

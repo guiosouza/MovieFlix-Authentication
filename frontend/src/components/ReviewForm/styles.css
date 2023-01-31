@@ -1,42 +1,57 @@
 .review-submit-card {
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-    justify-content: center;
-    width: auto;
-    height: auto;
-    background-color: #6C6C6C;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
-    border-radius: 4px;
-    padding: 17px 10px 28px 10px;
-    margin-bottom: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+  width: auto;
+  height: auto;
+  background-color: #6c6c6c;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
+  border-radius: 4px;
+  padding: 17px 10px 28px 10px;
+  margin-bottom: 18px;
 }
 
 .review-submit-card form {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .review-submit-card input {
-    border: 1px solid #E1E1E1;
-    border-radius: 4px;
-    Width: auto;
-    Height: 50px;
-    margin-bottom: 17px;
-    padding-left: 10px
+  border: 1px solid #e1e1e1;
+  border-radius: 4px;
+  width: auto;
+  height: 50px;
+  margin-bottom: 17px;
+  padding-left: 10px;
 }
 
 .review-submit-card button {
-   background: #FFC700;
-    border-radius: 4px;
-    Width:  auto;
-    Height: 50px;
-    font-weight: 700;
-    font-size: 16px;
-    border: none;
+  background: #ffc700;
+  border-radius: 4px;
+  width: auto;
+  height: 50px;
+  font-weight: 700;
+  font-size: 16px;
+  border: none;
 }
 
 #input-review::placeholder {
-    color:#9E9E9E;
-    font-size: 16px;
-} 
+  color: #9e9e9e;
+  font-size: 16px;
+}
+
+@media (min-width: 1200px) {
+  .review-submit-card {
+    padding: 24px 33px 28px 33px;
+  }
+
+  .review-submit-card form {
+    display: flex;
+    justify-content: center;
+  }
+
+  .review-submit-card button {
+    width: 334px;
+  }
+}
