@@ -1,6 +1,5 @@
 import { AxiosRequestConfig } from "axios";
 import { useEffect, useState } from "react";
-import { ReviewPage } from "types/ReviewPage";
 import { Review } from "types/reviews";
 import { hasAnyRoles, requestBackend } from "util/requests";
 import { useParams } from "react-router-dom";
@@ -44,9 +43,11 @@ const Reviews = () => {
       {hasAnyRoles(["ROLE_MEMBER"]) && (
         <ReviewForm movieId={movieId} onInsertReview={handleInsertReview} />
       )}
+      <div style={{backgroundColor: "#6C6C6C", paddingBottom: "28px", paddingTop: "5px", borderRadius: "4px"}}>
       {page?.map((x) => (
         <ReviewCard key={x.id} review={x} /> //uso a lista de reviews para renderizar card a card.
       ))}
+      </div>
     </div>
   );
 };

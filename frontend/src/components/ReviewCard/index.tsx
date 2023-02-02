@@ -6,7 +6,7 @@ type Props = {
 };
 const ReviewCard = ({ review }: Props) => {
   return (
-    <div>
+    <div style={{}}>
       <div className="movie-list-container">
         <div className="review-card">
           <div className="review-details">
