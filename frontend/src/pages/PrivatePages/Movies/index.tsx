@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios, { AxiosRequestConfig } from 'axios';
+import Select from 'react-select';
 import { Link } from "react-router-dom";
 import "./styles.css";
 import { BASE_URL, requestBackend } from "util/requests";
@@ -13,9 +14,17 @@ type Movie = {
 };
 
 const Movies = () => {
+  const options = [
+    { value: 'chocolate', label: 'Chocolate' },
+    { value: 'strawberry', label: 'Strawberry' },
+    { value: 'vanilla', label: 'Vanilla' }
+  ]
+
+
   const [movies, setMovies] = useState<Movie[]>([]);
 
   useEffect(() => {
+
     const params: AxiosRequestConfig = {
       url: `${BASE_URL}/movies?genreId=0&page=0&size=4&sort=title`,
       withCredentials: true
@@ -30,6 +39,12 @@ const Movies = () => {
     <div className="movie-list-page">
       <div className="list-container">
         <div className="filter-search">
+          <Select 
+          classNamePrefix="filter-search-select"
+          options={options}
+          isClearable={true}
+          placeholder="Selecione..."
+          />
 
         </div>
         {movies.map((movie) => (
