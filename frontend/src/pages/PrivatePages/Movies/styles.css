@@ -1,19 +1,50 @@
 .movie-list-page {
-    background-color:  #525252;
-    padding: 15px 40px 344px 15px;
+  background-color: #525252;
+  padding: 10px;
 }
 
-.list-container h1 {
-    font-size: 21.5px;
-    width: 286px;
-    
-    margin-bottom: 47px;
-    letter-spacing: -0.015em;
+.filter-search {
+    width: 300px;
+    height: 60px;
+    background-color: #6c6c6c;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    margin-top: 10px;
 }
 
-.list-container h2 {
-    font-size: 18px;
-    color: #fff;
-    font-weight: 400;
-    margin-bottom: 12px;
+.movie-card {
+  width: 300px;
+  height: 322px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  background-color: #6c6c6c;
+}
+
+.movie-card img {
+  width: 300px;
+  margin-top: 26px;
+}
+
+.movie-card h2 {
+  font-size: 20px;
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  margin: 0px;
+}
+
+.year {
+  font-size: 16px;
+  color: #ffc700;
+  font-weight: 700;
+}
+
+.subtitle {
+  font-size: 16px;
+  font-weight: 400;
+  color: white;
+}
+
+.movie-card-info {
+  padding: 10px 15px 0px 15px;
 }

@@ -1,13 +1,47 @@
+import { useEffect, useState } from "react";
+import axios, { AxiosRequestConfig } from 'axios';
 import { Link } from "react-router-dom";
 import "./styles.css";
+import { BASE_URL, requestBackend } from "util/requests";
+
+type Movie = {
+  id: number;
+  title: string;
+  subTitle: string | null;
+  year: number;
+  imgUrl: string;
+};
 
 const Movies = () => {
+  const [movies, setMovies] = useState<Movie[]>([]);
+
+  useEffect(() => {
+    const params: AxiosRequestConfig = {
+      url: `${BASE_URL}/movies?genreId=0&page=0&size=4&sort=title`,
+      withCredentials: true
+    };
+    requestBackend(params).then((response) => {
+      setMovies(response.data.content)
+      console.log(movies)
+    })
+  }, []);
+
   return (
     <div className="movie-list-page">
       <div className="list-container">
-        <h1>Tela de listagem de filmes</h1>
-        <Link  to="/movies/1/reviews"> <h2>Acessar movies/1</h2></Link>
-        <Link  to="/movies/2/reviews"> <h2>Acessar movies/2</h2></Link>
+        <div className="filter-search">
+
+        </div>
+        {movies.map((movie) => (
+          <div key={movie.id} className="movie-card">
+            <img src={movie.imgUrl} alt={movie.title} />
+            <div className="movie-card-info">
+              <h2>{movie.title}</h2>
+              <p className="year">{movie.year}</p>
+              <p className="subtitle">{movie.subTitle}</p>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
