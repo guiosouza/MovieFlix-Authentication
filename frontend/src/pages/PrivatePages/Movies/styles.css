@@ -1,3 +1,4 @@
+/* Movie List Page */
 .movie-list-page {
   background-color: #525252;
   padding: 10px;
@@ -5,6 +6,7 @@
   justify-content: center;
 }
 
+/* Filter Search */
 .filter-search {
   display: flex;
   justify-content: center;
@@ -17,25 +19,36 @@
   margin-top: 10px;
 }
 
+/* Filter Search Select */
+.filter-search-select__clear-indicator,
+.filter-search-select__dropdown-indicator {
+  color: #ffffff !important;
+}
+
+.filter-search-select__indicator {
+
+}
+
 .filter-search-select__control {
   width: 260px;
   height: 50px;
   border-radius: 4px;
   background-color: #6c6c6c !important;
   color: #fff !important;
-  border-color: white;
 }
 
-.filter-search-select__control:focus {
-  border-color: #ffffff;
-  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+.filter-search-select__control--is-focused,
+.filter-search-select__control--menu-is-open {
+  border-color: white !important;
 }
 
-.filter-search-select__single-value {
-  color: #fff !important;
+.filter-search-select__control--menu-is-open {
+  box-shadow: 0 0 5px 2px rgba(255, 255, 255, 0.5) !important;
 }
 
-.filter-search-select__placeholder {
+.filter-search-select__single-value,
+.filter-search-select__placeholder,
+.filter-search-select__input {
   color: #fff !important;
 }
 
@@ -43,10 +56,15 @@
   display: none;
 }
 
-.filter-search-select__input {
-  color: #fff !important;
+.filter-search-select__control--is-focused,
+.filter-search-select__control--is-focused:hover,
+.filter-search-select__control--is-focused:focus,
+.filter-search-select__control--menu-is-open {
+  outline: none !important;
+  box-shadow: none !important;
 }
 
+/* Movie Card */
 .movie-card {
   width: 300px;
   height: 322px;
