@@ -7,6 +7,12 @@
     margin: 0px;
 }
 
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
 a, a:hover {
     text-decoration: none;
     color: unset;
