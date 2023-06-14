@@ -2,12 +2,17 @@ import { ReactComponent as ArrowIcon } from 'assets/images/arrow.svg';
 import ReactPaginate from 'react-paginate';
 import './styles.css';
 
-const Pagination = () => {
+type Props = {
+    pageCount: number;
+    range: number;
+}
+
+const Pagination = ({ pageCount, range }: Props) => {
     return (
 
         <ReactPaginate
-            pageCount={3}
-            pageRangeDisplayed={3}
+            pageCount={pageCount}
+            pageRangeDisplayed={range}
             marginPagesDisplayed={1}
             containerClassName="pagination-container"
             pageLinkClassName='pagination-item'

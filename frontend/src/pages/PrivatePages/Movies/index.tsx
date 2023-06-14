@@ -2,29 +2,34 @@ import { useEffect, useState } from "react";
 import axios, { AxiosRequestConfig } from 'axios';
 import Select from 'react-select';
 import { Link } from "react-router-dom";
-import "./styles.css";
 import { BASE_URL, requestBackend } from "util/requests";
 import { Genres } from "types/genres";
 import { Movie } from "types/movie";
 import { Controller, useForm } from 'react-hook-form';
 import Pagination from "components/Pagination";
-
+import "./styles.css";
 
 const Movies = () => {
 
   const { register, handleSubmit, control, watch, formState: { errors } } = useForm();
 
   const [selectGenres, setSelectGenres] = useState<Genres[]>([]);
+  const [totalPages, setTotalPages] = useState();
 
   const [movies, setMovies] = useState<Movie[]>([]);
 
-  const handleChange = (data : {value: number, label: string}) => {
+  const handleChange = (data: { value: number, label: string }) => {
     const params: AxiosRequestConfig = {
-      url: data == null || undefined ? `${BASE_URL}/movies` : `${BASE_URL}/movies?genreId=${data.value}&page=0&size=4&sort=title`,
-      withCredentials: true
+      url: data == null || undefined ? `${BASE_URL}/movies?genreId=0&page=0&sort=title` : `${BASE_URL}/movies?genreId=${data.value}&page=0&sort=title`,
+      withCredentials: true,
+      params: {
+        size: 4
+      }
     };
     requestBackend(params).then((response) => {
       setMovies(response.data.content)
+      setTotalPages(response.data.totalPages);
+      console.log(response.data)
     }).catch((error) => {
       console.log(error)
     })
@@ -34,7 +39,7 @@ const Movies = () => {
   useEffect(() => {
     const params: AxiosRequestConfig = {
       url: `${BASE_URL}/genres`,
-      withCredentials: true
+      withCredentials: true,
     };
     requestBackend(params).then((response) => {
 
@@ -51,18 +56,21 @@ const Movies = () => {
       });
 
       setSelectGenres(transformedData);
-      console.log(response.data);
     })
   }, [])
 
   useEffect(() => {
     const params: AxiosRequestConfig = {
-      url: `${BASE_URL}/movies`,
-      withCredentials: true
+      url: `${BASE_URL}/movies?genreId=0&page=0&sort=title`,
+      withCredentials: true,
+      params: {
+        size: 4
+      }
     };
     requestBackend(params).then((response) => {
+      setTotalPages(response.data.totalPages);
       setMovies(response.data.content)
-      console.log(movies)
+
     })
   }, []);
 
@@ -98,7 +106,9 @@ const Movies = () => {
             </div>
           </div>
         ))}
-        <Pagination />
+        <Pagination pageCount={(totalPages) ? totalPages : 0}
+          range={4}
+        />
       </div>
     </div>
   );
