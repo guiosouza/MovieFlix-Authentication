@@ -12,11 +12,26 @@ import "./styles.css";
 const Movies = () => {
 
   const { register, handleSubmit, control, watch, formState: { errors } } = useForm();
-
   const [selectGenres, setSelectGenres] = useState<Genres[]>([]);
   const [totalPages, setTotalPages] = useState();
-
   const [movies, setMovies] = useState<Movie[]>([]);
+
+  const getMoviesByPagination = (pageNumber: number) => {
+    const params: AxiosRequestConfig = {
+      url: `${BASE_URL}/movies?genreId=0&page=${pageNumber}&sort=title`,
+      withCredentials: true,
+      params: {
+        size: 4
+      }
+    };
+    requestBackend(params).then((response) => {
+      setMovies(response.data.content)
+      setTotalPages(response.data.totalPages);
+      console.log(response.data)
+    }).catch((error) => {
+      console.log(error)
+    })
+  }
 
   const handleChange = (data: { value: number, label: string }) => {
     const params: AxiosRequestConfig = {
@@ -41,8 +56,8 @@ const Movies = () => {
       url: `${BASE_URL}/genres`,
       withCredentials: true,
     };
-    requestBackend(params).then((response) => {
 
+    requestBackend(params).then((response) => {
       type DataItem = {
         id: number;
         name: string;
@@ -108,6 +123,7 @@ const Movies = () => {
         ))}
         <Pagination pageCount={(totalPages) ? totalPages : 0}
           range={4}
+          onChange={getMoviesByPagination}
         />
       </div>
     </div>

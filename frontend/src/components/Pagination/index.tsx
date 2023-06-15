@@ -5,9 +5,10 @@ import './styles.css';
 type Props = {
     pageCount: number;
     range: number;
+    onChange?: (pageNumber: number) => void;
 }
 
-const Pagination = ({ pageCount, range }: Props) => {
+const Pagination = ({ pageCount, range, onChange }: Props) => {
     return (
 
         <ReactPaginate
@@ -21,6 +22,7 @@ const Pagination = ({ pageCount, range }: Props) => {
             nextClassName="arrow-next"
             activeLinkClassName="pagination-link-active"
             disabledClassName="arrow-inactive"
+            onPageChange={(items)  => (onChange) ? onChange(items.selected) : {}}
             previousLabel={<ArrowIcon />}
             nextLabel={<ArrowIcon />}
         />
