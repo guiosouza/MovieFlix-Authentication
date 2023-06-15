@@ -112,14 +112,16 @@ const Movies = () => {
           />
         </div>
         {movies.map((movie) => (
-          <div key={movie.id} className="movie-card">
-            <img src={movie.imgUrl} alt={movie.title} />
-            <div className="movie-card-info">
-              <h2>{movie.title}</h2>
-              <p className="year">{movie.year}</p>
-              <p className="subtitle">{movie.subTitle}</p>
+          <Link to={`/movies/${movie.id}/reviews`} key={movie.id}>
+            <div key={movie.id} className="movie-card">
+              <img src={movie.imgUrl} alt={movie.title} />
+              <div className="movie-card-info">
+                <h2>{movie.title}</h2>
+                <p className="year">{movie.year}</p>
+                <p className="subtitle">{movie.subTitle}</p>
+              </div>
             </div>
-          </div>
+          </Link>
         ))}
         <Pagination pageCount={(totalPages) ? totalPages : 0}
           range={4}

@@ -18,6 +18,62 @@
   font-size: 16px;
 }
 
+.movie-card-details-container {
+  background-color: #6c6c6c;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: auto;
+  width: auto;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+.movie-card-details-container img {
+  height: auto;
+  width: auto;
+  max-width: 100%; /* Subtrai 40px para manter a margem de 20px em cada lado */
+}
+
+.movie-card-details-info {
+  margin-top: 12px;
+}
+
+.movie-card-details-info h2 {
+  font-size: 20px;
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  margin: 0px;
+}
+
+.year {
+  font-size: 16px;
+  color: #ffc700;
+  font-weight: 700;
+}
+
+.subtitle {
+  font-size: 16px;
+  font-weight: 400;
+  color: white;
+}
+
+.synopsis {
+  margin-top: 16px;
+  border: 1px solid #E1E1E1;
+  border-radius: 10px;
+  padding: 13px 13px 18px 13px;
+}
+
+.synopsis p {
+  font-size: 16px;
+  color: #9E9E9E;
+  line-height: 21.79px;
+  font-weight: 400;
+}
+
 @media (min-width: 1200px) {
   .page-container {
     display: flex;

@@ -1,7 +1,7 @@
 import { AxiosRequestConfig } from "axios";
 import { useEffect, useState } from "react";
 import { Review } from "types/reviews";
-import { hasAnyRoles, requestBackend } from "util/requests";
+import { BASE_URL, hasAnyRoles, requestBackend } from "util/requests";
 import { useParams } from "react-router-dom";
 import "./styles.css";
 import ReviewForm from "components/ReviewForm";
@@ -11,8 +11,18 @@ type UrlParams = {
   movieId: string;
 };
 
+export type Movie = {
+  id: number,
+  title: string,
+  subTitle: string,
+  year: number,
+  imgUrl: string,
+  synopsis: string
+};
+
 const Reviews = () => {
   const [page, setPage] = useState<Review[]>([]); //recebe a lista de reviews obtida na requisição.
+  const [movieInfo, setMovieInfo] = useState<Movie>();
   const { movieId } = useParams<UrlParams>();
 
   useEffect(() => {
@@ -31,6 +41,18 @@ const Reviews = () => {
     });
   }, [movieId]);
 
+  useEffect(() => {
+    const params: AxiosRequestConfig = {
+      url: `/movies/${movieId}`,
+      withCredentials: true,
+    };
+
+    requestBackend(params).then((response) => {
+      setMovieInfo(response.data);
+      console.log(response.data);
+    });
+  }, [movieId]);
+
   const handleInsertReview = (review: Review) => {
     const clone = [...page];
     clone.push(review);
@@ -39,14 +61,32 @@ const Reviews = () => {
 
   return (
     <div className="page-container">
-      <h1>Tela de listagem de filmes id: {movieId}</h1>
+      <div className="movie-card-details-container">
+        {movieInfo ? (
+          <>
+            <img src={movieInfo.imgUrl} alt="imagem do filme" />
+              <div className="movie-card-details-info">
+                <h2>{movieInfo.title}</h2>
+                <p className="year">{movieInfo.year}</p>
+                <p className="subtitle">{movieInfo.subTitle}</p>
+              </div>
+              <div className="synopsis">
+              <p>{movieInfo.synopsis}</p>
+              </div>
+          </>
+        ) : (
+          <p>Carregando...</p>
+        )}
+      </div>
+      {/* Resto do conteúdo */}
+
       {hasAnyRoles(["ROLE_MEMBER"]) && (
         <ReviewForm movieId={movieId} onInsertReview={handleInsertReview} />
       )}
-      <div style={{backgroundColor: "#6C6C6C", paddingBottom: "28px", paddingTop: "5px", borderRadius: "4px"}}>
-      {page?.map((x) => (
-        <ReviewCard key={x.id} review={x} /> //uso a lista de reviews para renderizar card a card.
-      ))}
+      <div style={{ backgroundColor: "#6C6C6C", paddingBottom: "28px", paddingTop: "5px", borderRadius: "4px" }}>
+        {page?.map((x) => (
+          <ReviewCard key={x.id} review={x} /> //uso a lista de reviews para renderizar card a card.
+        ))}
       </div>
     </div>
   );

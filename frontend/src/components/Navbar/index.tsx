@@ -43,7 +43,7 @@ const Navbar = () => {
 
   return (
     <div className="navbar-container">
-      <Link to="/">
+      <Link to="/movies">
         <h2>MovieFlix</h2>
       </Link>
       <div className="nav-logout">
