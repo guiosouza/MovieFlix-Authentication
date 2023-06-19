@@ -83,7 +83,7 @@ const Reviews = () => {
       {hasAnyRoles(["ROLE_MEMBER"]) && (
         <ReviewForm movieId={movieId} onInsertReview={handleInsertReview} />
       )}
-      <div style={{ backgroundColor: "#6C6C6C", paddingBottom: "28px", paddingTop: "5px", borderRadius: "4px" }}>
+      <div className="reviews-container">
         {page?.map((x) => (
           <ReviewCard key={x.id} review={x} /> //uso a lista de reviews para renderizar card a card.
         ))}

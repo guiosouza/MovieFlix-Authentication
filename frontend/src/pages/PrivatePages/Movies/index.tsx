@@ -91,42 +91,50 @@ const Movies = () => {
 
   return (
     <div className="movie-list-page">
-      <div className="list-container">
-        <div className="filter-search">
-          <Controller
-            control={control}
-            name="genre"
-            render={({ field }) => (
-              <Select
-                classNamePrefix="filter-search-select"
-                options={selectGenres}
-                isClearable={true}
-                placeholder="Selecione..."
-                onChange={(selectedOption) => {
-                  field.onChange(selectedOption);
-                  handleChange(selectedOption)
-                }}
-                value={field.value}
+      <div className="container">
+        <div className="filter-row">
+            <div className="filter-search">
+              <Controller
+                control={control}
+                name="genre"
+                render={({ field }) => (
+                  <Select
+                    classNamePrefix="filter-search-select"
+                    options={selectGenres}
+                    isClearable={true}
+                    placeholder="Selecione..."
+                    onChange={(selectedOption) => {
+                      field.onChange(selectedOption);
+                      handleChange(selectedOption)
+                    }}
+                    value={field.value}
+                  />
+                )}
               />
-            )}
+            </div>
+        </div>
+        <div className="card-row">
+          {movies.map((movie) => (
+            <div className="col-md-6">
+              <Link to={`/movies/${movie.id}/reviews`} key={movie.id}>
+                <div key={movie.id} className="movie-card">
+                  <img src={movie.imgUrl} alt={movie.title} />
+                  <div className="movie-card-info">
+                    <h2>{movie.title}</h2>
+                    <p className="year">{movie.year}</p>
+                    <p className="subtitle">{movie.subTitle}</p>
+                  </div>
+                </div>
+              </Link>
+            </div>
+          ))}
+        </div>
+        <div className="pagination-row">
+          <Pagination pageCount={(totalPages) ? totalPages : 0}
+            range={4}
+            onChange={getMoviesByPagination}
           />
         </div>
-        {movies.map((movie) => (
-          <Link to={`/movies/${movie.id}/reviews`} key={movie.id}>
-            <div key={movie.id} className="movie-card">
-              <img src={movie.imgUrl} alt={movie.title} />
-              <div className="movie-card-info">
-                <h2>{movie.title}</h2>
-                <p className="year">{movie.year}</p>
-                <p className="subtitle">{movie.subTitle}</p>
-              </div>
-            </div>
-          </Link>
-        ))}
-        <Pagination pageCount={(totalPages) ? totalPages : 0}
-          range={4}
-          onChange={getMoviesByPagination}
-        />
       </div>
     </div>
   );

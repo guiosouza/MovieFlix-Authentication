@@ -6,6 +6,14 @@
   justify-content: center;
 }
 
+.container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
 /* Filter Search */
 .filter-search {
   display: flex;
@@ -17,6 +25,7 @@
   border-radius: 4px;
   margin-bottom: 20px;
   margin-top: 10px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
 }
 
 /* Filter Search Select */
@@ -60,6 +69,13 @@
   box-shadow: none !important;
 }
 
+.card-row {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
 /* Movie Card */
 .movie-card {
   width: 300px;
@@ -67,6 +83,7 @@
   border-radius: 4px;
   margin-bottom: 20px;
   background-color: #6c6c6c;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
 }
 
 .movie-card img {
@@ -98,18 +115,10 @@
   padding: 10px 15px 0px 15px;
 }
 
-@media(min-width: 576px) {
-
-  .movie-list-page {
-    background-color: #525252;
-    display: flex;
-    justify-content: center;
-    padding: 0px
-  }
-
+@media (min-width: 576px) {
   .filter-search {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     width: 536px;
     height: 60px;
@@ -118,22 +127,29 @@
     margin-top: 10px;
   }
 
-  .list-container {
-    background-color: #525252;
+  .card-row {
     display: flex;
     justify-content: center;
     flex-direction: row;
-    flex-wrap: wrap; /* Adiciona quebra de linha */
+    flex-wrap: wrap;
   }
 
   .movie-card {
-    margin: 10px;
     width: 258px;
     height: 322px;
+    margin: 10px;
   }
-
   .movie-card img {
     width: 258px;
     margin-top: 26px;
   }
-} 
+
+  .filter-search-select__control {
+    width: 260px;
+    height: 50px;
+    border-radius: 4px;
+    background-color: #6c6c6c !important;
+    color: #fff !important;
+    margin-left: 20px;
+  }
+}
