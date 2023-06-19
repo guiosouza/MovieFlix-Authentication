@@ -115,7 +115,6 @@ const Movies = () => {
         </div>
         <div className="card-row">
           {movies.map((movie) => (
-            <div className="col-md-6">
               <Link to={`/movies/${movie.id}/reviews`} key={movie.id}>
                 <div key={movie.id} className="movie-card">
                   <img src={movie.imgUrl} alt={movie.title} />
@@ -126,7 +125,7 @@ const Movies = () => {
                   </div>
                 </div>
               </Link>
-            </div>
+   
           ))}
         </div>
         <div className="pagination-row">

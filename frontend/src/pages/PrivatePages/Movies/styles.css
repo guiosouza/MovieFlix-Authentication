@@ -106,7 +106,7 @@
 }
 
 .subtitle {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 400;
   color: white;
 }
@@ -139,6 +139,7 @@
     height: 322px;
     margin: 10px;
   }
+
   .movie-card img {
     width: 258px;
     margin-top: 26px;
@@ -151,5 +152,66 @@
     background-color: #6c6c6c !important;
     color: #fff !important;
     margin-left: 20px;
+  }
+}
+
+@media (min-width: 768px) {
+  .filter-search {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 688px;
+    height: 60px;
+    background-color: #6c6c6c;
+    margin-bottom: 20px;
+    margin-top: 30px;
+  }
+
+  .movie-card {
+    width: 324px;
+    height: 364px;
+    margin: 20px;
+  }
+
+  .movie-card img {
+    width: 324px;
+    margin-top: 20px;
+  }
+
+  .movie-card-info {
+    padding: 14px 20px 0px 20px;
+  }
+
+  .movie-card-info h2 {
+    font-size: 20px;
+  }
+
+  .year {
+    font-size: 16px !important;
+  } 
+
+  .subtitle {
+    font-size: 14px !important;
+  }
+
+}
+
+@media (min-width: 992px) {
+  .filter-search {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 912px;
+    background-color: #6c6c6c;
+    margin-bottom: 20px;
+    margin-top: 30px;
+  }
+  .movie-card {
+    width: 436px;
+    height: 457px;
+    margin: 20px;
+  }
+  .movie-card img {
+    width: 436px;
   }
 }

@@ -38,6 +38,12 @@
 @media(min-width: 768px) {
 
     .navbar-container h2 {
-        margin-left: 31px;
+        margin-left: 18px;
     }
+
+    .nav-logout {
+        margin-right: 40px; 
+    }
+
+    
 }
