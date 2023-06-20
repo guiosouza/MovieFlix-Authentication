@@ -6,6 +6,11 @@
   justify-content: center;
 }
 
+.invisible-card {
+  opacity: 0;
+  pointer-events: none;
+}
+
 .container {
   display: flex;
   align-items: center;

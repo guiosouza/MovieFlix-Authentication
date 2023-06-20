@@ -13,12 +13,15 @@
   margin-top: 15px;
   margin-bottom: 8px;
   font-weight: 700;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
 }
-
 
 .review-details-box {
   border: solid 1px #e1e1e1;
   padding: 10px 28px 21px 12px;
+  display: flex;
   width: auto;
 }
 
@@ -40,6 +43,10 @@
   margin-right: 15px;
 }
 
+.reviews-container {
+  padding: 5px 0px 8px 0px;
+}
+
 @media (min-width: 576px) {
   .reviewer-name h2 {
     font-size: 16px;
@@ -49,12 +56,17 @@
     padding: 12px;
     width: auto;
     height: 100%;
-    
+    display: flex;
   }
 
   .review-details-box h2 {
     font-size: 16px;
   }
+
+  .reviews-container {
+    padding: 5px 10px 8px 10px;
+  }
+
 }
 
 @media (min-width: 768px) {
@@ -72,9 +84,6 @@
   .review-details-box {
     height: 46px;
     padding: 2px 17px 2px 17px;
-  }
-
-  .review-details-box {
     padding: 12px;
     height: 100%;
   }
