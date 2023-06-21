@@ -15,6 +15,7 @@ const Movies = () => {
   const [selectGenres, setSelectGenres] = useState<Genres[]>([]);
   const [totalPages, setTotalPages] = useState();
   const [movies, setMovies] = useState<Movie[]>([]);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   const getMoviesByPagination = (pageNumber: number) => {
     const params: AxiosRequestConfig = {
@@ -50,6 +51,21 @@ const Movies = () => {
     })
   };
 
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  const shouldRenderInvisibleCard =
+  movies.length % 2 !== 0 && (windowWidth < 320 || windowWidth > 575);
+
 
   useEffect(() => {
     const params: AxiosRequestConfig = {
@@ -82,6 +98,7 @@ const Movies = () => {
         size: 4
       }
     };
+    
     requestBackend(params).then((response) => {
       setTotalPages(response.data.totalPages);
       setMovies(response.data.content)
@@ -114,7 +131,7 @@ const Movies = () => {
           </div>
         </div>
         <div className="card-row">
-          {movies.map((movie, index) => (
+          {movies.map((movie) => (
             <Link to={`/movies/${movie.id}/reviews`} key={movie.id}>
               <div key={movie.id} className="movie-card">
                 <img src={movie.imgUrl} alt={movie.title} />
@@ -126,7 +143,7 @@ const Movies = () => {
               </div>
             </Link>
           ))}
-          {movies.length % 2 !== 0 && (
+          {shouldRenderInvisibleCard && (
             <div className="movie-card invisible-card"></div>
           )}
         </div>

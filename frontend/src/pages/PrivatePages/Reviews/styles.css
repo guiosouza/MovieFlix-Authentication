@@ -239,5 +239,18 @@
     width: 500px;
     height: 314.23px
   }
+}
 
+@media (min-width: 1400px) {
+  .page-container {
+    align-items: center;
+    padding-top: 40px;
+  }
+  .movie-card-details-container {
+    width: 1120px
+  }
+
+  .reviews-container {
+    width: 1140px;
+  }
 }

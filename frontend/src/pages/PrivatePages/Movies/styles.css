@@ -254,3 +254,11 @@
   }
 
 }
+
+@media(min-width: 1400px) {
+  .movie-list-page {
+    background-color: #525252;
+    padding-bottom: 900px;
+
+  }
+}

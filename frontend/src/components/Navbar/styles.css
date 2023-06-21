@@ -62,3 +62,9 @@
         margin-right: 40px; 
     }
 }
+
+@media(min-width: 1400px) {
+    .nav-logout {
+        margin-right: 233px; 
+    }
+}
