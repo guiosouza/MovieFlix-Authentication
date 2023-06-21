@@ -44,6 +44,21 @@
     .nav-logout {
         margin-right: 40px; 
     }
+}
 
+@media(min-width: 992px) {
+    .nav-logout {
+        margin-right: 252px; 
+    }
+}
+
+@media(min-width: 1200px) {
+
+    .navbar-container h2 {
+        margin-left: 40px;
+    }
     
+    .nav-logout {
+        margin-right: 40px; 
+    }
 }

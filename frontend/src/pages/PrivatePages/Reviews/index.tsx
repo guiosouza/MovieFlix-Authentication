@@ -64,15 +64,19 @@ const Reviews = () => {
       <div className="movie-card-details-container">
         {movieInfo ? (
           <>
-            <img src={movieInfo.imgUrl} alt="imagem do filme" />
+            <div className="image-container">
+              <img src={movieInfo.imgUrl} alt="imagem do filme" />
+            </div>
+            <div className="card-bottom-container" >
               <div className="movie-card-details-info">
                 <h2>{movieInfo.title}</h2>
                 <p className="year">{movieInfo.year}</p>
                 <p className="subtitle">{movieInfo.subTitle}</p>
               </div>
               <div className="synopsis">
-              <p>{movieInfo.synopsis}</p>
+                <p>{movieInfo.synopsis}</p>
               </div>
+            </div>
           </>
         ) : (
           <p>Carregando...</p>

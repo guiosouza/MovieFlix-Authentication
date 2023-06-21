@@ -188,17 +188,17 @@
   }
 
   .movie-card-info h2 {
-    font-size: 20px;
+    font-size: 1.3em;
   }
 
-  .year {
-    font-size: 16px !important;
-  } 
-
-  .subtitle {
-    font-size: 14px !important;
+  .movie-card-info .year {
+    font-size: 1.1em !important;
   }
 
+  .movie-card-info .subtitle {
+    margin-top: 5px;
+    font-size: 1em !important;
+  }
 }
 
 @media (min-width: 992px) {
@@ -219,4 +219,38 @@
   .movie-card img {
     width: 436px;
   }
+
+  .movie-card-info {
+    padding-top: 23px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .filter-search {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 1119px;
+    height: 80px;
+    background-color: #6c6c6c;
+    margin-bottom: 26px;
+    margin-top: 30px;
+  }
+
+  .movie-card {
+    width: 258px;
+    height: 322px;
+    margin: 14px;
+  }
+
+  .movie-card img {
+    width: 258px;
+    margin-top: 20px;
+  }
+
+  .pagination-container {
+    margin-top: 27px;
+    min-width: 1119px;
+  }
+
 }
